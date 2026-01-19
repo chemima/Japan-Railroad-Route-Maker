@@ -4,13 +4,13 @@ const fragments = require('./fragments');
 module.exports = function (App) {
   App.prototype.eventPlotDelete = function (e) {
     const $target = $(e.target).closest('.plot-item');
-    const index = parseInt($target.data('index'), 10);
+    const index = parseInt($target.attr('data-index'), 10);
     this.deletePlotItem(index);
   };
 
   App.prototype.eventPlotChangeColor = function (e) {
     const $target = $(e.target).closest('.plot-item');
-    const index = parseInt($target.data('index'), 10);
+    const index = parseInt($target.attr('data-index'), 10);
 
     const newColor = prompt('새로운 색상 (#rrggbb 형태)').trim();
     if (!newColor) return;
@@ -23,7 +23,7 @@ module.exports = function (App) {
 
   App.prototype.eventPlotChangeWidth = function (e) {
     const $target = $(e.target).closest('.plot-item');
-    const index = parseInt($target.data('index'), 10);
+    const index = parseInt($target.attr('data-index'), 10);
 
     const newWidth = parseInt(prompt('새로운 너비 (숫자)').trim());
     if (!newWidth) return;
@@ -85,7 +85,7 @@ module.exports = function (App) {
       color, width
     );
 
-    $plotItem.data('index', plotIndex);
+    $plotItem.attr('data-index', String(plotIndex));
     $plotItem.find('.action-delete').on('click', this.eventPlotDelete.bind(this));
     $plotItem.find('.action-color').on('click', this.eventPlotChangeColor.bind(this));
     $plotItem.find('.action-width').on('click', this.eventPlotChangeWidth.bind(this));
@@ -98,7 +98,7 @@ module.exports = function (App) {
   App.prototype.deletePlotItem = function (index) {
     this.getPlotItem(index).remove();
     for (let i = index + 1 ; i < this.plots.length ; i++)
-      this.getPlotItem(i).data('index', i - 1);
+      this.getPlotItem(i).attr('data-index', String(i - 1));
 
     this.plots[index].polyline.setMap(null);
     this.plots.splice(index, 1);
