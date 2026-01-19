@@ -10,6 +10,7 @@
     "build:dev": "NODE_ENV=development webpack --mode development"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "date-fns": "^1.29.0",
     "file-saver": "^1.3.8",
     "lz-string": "^1.4.4",

@@ -1,3 +1,4 @@
+require('babel-polyfill');
 const LZString = require('lz-string');
 const $ = require('umbrellajs');
 $.prototype.removeAttr = function (name) {
