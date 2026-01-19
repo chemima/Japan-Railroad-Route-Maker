@@ -11,7 +11,7 @@ module.exports = {
   },
   output: {
     filename: 'js/[name].js?hash=[contenthash:6]',
-    publicPath: '/dist/',
+    publicPath: '',
   },
   optimization: {
     splitChunks: {
@@ -52,7 +52,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      filename: '../index.html',
+      filename: 'index.html',
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css?hash=[contenthash:6]',
