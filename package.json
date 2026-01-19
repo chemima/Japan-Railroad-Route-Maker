@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "set NODE_OPTIONS=--openssl-legacy-provider && set NODE_ENV=development && webpack-dev-server --mode development",
-    "build": "NODE_ENV=production webpack --mode production",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && set NODE_ENV=production && webpack --mode production",
     "build:dev": "NODE_ENV=development webpack --mode development"
   },
   "dependencies": {
