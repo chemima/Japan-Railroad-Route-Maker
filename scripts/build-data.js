@@ -10,7 +10,7 @@ const runMapshaper = commands => new Promise((resolve, reject) => {
 
 (async function() {
   await runMapshaper(
-   `-i src/data/N05-16_RailroadSection2.shp encoding=shiftjis \
+   `-i src/data/N05-24_RailroadSection2.shp encoding=shiftjis \
     -rename-fields 'type=N05_001,lineName=N05_002,company=N05_003,openYear=N05_004,startYear=N05_005b,endYear=N05_005e,groupId=N05_006' \
     -drop fields=N05_007,N05_008,N05_009,N05_010 \
     -each 'type = parseInt(type),
@@ -22,7 +22,7 @@ const runMapshaper = commands => new Promise((resolve, reject) => {
     -o dist/data/railroad.json format=topojson precision=0.00001`);
 
   await runMapshaper(
-   `-i src/data/N05-16_Station2.shp encoding=shiftjis \
+   `-i src/data/N05-24_Station2.shp encoding=shiftjis \
     -rename-fields 'type=N05_001,lineName=N05_002,company=N05_003,openYear=N05_004,startYear=N05_005b,endYear=N05_005e,groupId=N05_006,stationName=N05_011' \
     -drop fields=N05_007,N05_008,N05_009,N05_010 \
     -each 'type = parseInt(type),
