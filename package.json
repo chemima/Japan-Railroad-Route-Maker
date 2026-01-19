@@ -1,0 +1,35 @@
+{
+  "name": "japan-railroad-plotter",
+  "version": "2.0.5",
+  "description": "Japan Railroad Plotter",
+  "author": "Snack <korsnack@korsnack.kr>",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=development webpack-dev-server --mode development",
+    "build": "NODE_ENV=production webpack --mode production",
+    "build:dev": "NODE_ENV=development webpack --mode development"
+  },
+  "dependencies": {
+    "date-fns": "^1.29.0",
+    "file-saver": "^1.3.8",
+    "lz-string": "^1.4.4",
+    "mapshaper": "^0.4.91",
+    "topojson-client": "^3.0.0",
+    "umbrellajs": "^3.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^1.0.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.4.2",
+    "sass": "^1.70.0",
+    "sass-loader": "^10.2.0",
+    "style-loader": "^0.22.1",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  }
+}

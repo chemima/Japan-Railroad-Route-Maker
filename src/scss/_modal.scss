@@ -1,0 +1,57 @@
+.modal {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+
+  &.active {
+    display: block;
+  }
+}
+
+.modal-body {
+  position: fixed;
+  padding: 1rem;
+  left: 50%;
+  top: 2rem;
+  margin-left: -320px;
+  width: 640px;
+  background: rgba(0, 0, 0, 0.5);
+
+  label {
+    float: right;
+    padding: .1rem 0;
+    color: white;
+    border: 1px solid transparent;
+  }
+
+  label + label {
+    margin-right: 1rem;
+  }
+}
+
+.modal-title {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+
+  a { color: white; }
+}
+
+.modal-data {
+  textarea {
+    margin-bottom: .5rem;
+    padding: .25rem;
+    width: 100%;
+    height: 240px;
+    font-family: monospace;
+    font-size: .75rem;
+    word-break: break-all;
+  }
+}

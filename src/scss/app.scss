@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+button {
+  margin: .1rem 0;
+  padding: .1rem .3333rem;
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  border-radius: .2rem;
+  font-size: .75rem;
+  cursor: pointer;
+
+  &:hover { background: #e7e7e7; }
+  &:active { background: #eeeeee; }
+}
+
+.clearfix::after {
+  display: table;
+  content: "";
+  clear: both;
+}
+
+.rainbow-text {
+  animation: rainbow 3s infinite;
+}
+
+@keyframes rainbow {
+   20% { color: red; }
+   40% { color: yellow; }
+   60% { color: green; }
+   80% { color: blue; }
+  100% { color: orange; }
+}
+
+/* ========================================================================== */
+
+#google-map {
+  width: 100%;
+  height: 100%;
+}
+
+.hover {
+  padding: .5rem 1rem;
+  position: fixed;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+body.hovers-hidden .hover { display: none; }
+
+.hover-watermark {
+  left: 0;
+  bottom: 0;
+
+  a { color: #fff; }
+}
+
+.button-show-hovers {
+  display: none;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  padding: .25rem .5rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  cursor: pointer;
+}
+
+body.hovers-hidden .button-show-hovers { display: block; }
+
+@import "loading";
+@import "modal";
+@import "item";
+@import "plots";
+@import "search";
