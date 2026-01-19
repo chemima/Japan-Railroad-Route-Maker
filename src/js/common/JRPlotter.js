@@ -109,13 +109,14 @@ class JRPlotter {
       this.mapSeriesStation.set(
         hash, series.stops.map(stationHash => {
           const station = this.stationHashes.get(stationHash);
+          if (!station) return null;
           return {
             index: station.index,
             hash: stationHash,
             id: station.id,
             name: station.name,
           };
-        })
+        }).filter(s => s)
       );
     }
 
@@ -132,13 +133,14 @@ class JRPlotter {
       this.mapHiddenStation.set(
         hash, hidden.stations.map(stationHash => {
           const station = this.stationHashes.get(stationHash);
+          if (!station) return null;
           return {
             index: station.index,
             hash: stationHash,
             id: station.id,
             name: station.name,
           };
-        })
+        }).filter(s => s)
       );
     }
   }
