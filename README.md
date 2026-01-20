@@ -4,7 +4,8 @@ Go to [https://route-jp.netlify.app/](https://route-jp.netlify.app/).
 
 ## Data
 
-`src/data` directory is structured as follows.
+Source data is quite huge and not included on this repository. You should download source data by yourself and place them under src/data directory.
+`src/data` directory tree should look like this:
 
 ```
 src/
