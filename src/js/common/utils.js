@@ -43,8 +43,8 @@ function geoDistance(lat1, lng1, lat2, lng2) {
  * @param {Number} lng2
  */
 function geoCompare(lat1, lng1, lat2, lng2) {
-  return Math.round(lat1 * 100000) === Math.round(lat2 * 100000) &&
-    Math.round(lng1 * 100000) === Math.round(lng2 * 100000);
+  return Math.round(lat1 * 10000) === Math.round(lat2 * 10000) &&
+    Math.round(lng1 * 10000) === Math.round(lng2 * 10000);
 }
 
 /**
