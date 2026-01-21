@@ -29,8 +29,8 @@ const runMapshaper = commands => new Promise((resolve, reject) => {
            openYear = parseInt(openYear),
            startYear = parseInt(startYear),
            endYear = parseInt(endYear)
-           groupId = (this.id == 6053) ? "EB03_a14208001" :
-                     (this.id == 6055) ? "EB03_a14208003" : groupId
+           groupId = (this.id == 6052) ? "EB03_a14208001" :
+                     (this.id == 6054) ? "EB03_a14208003" : groupId
            this.x = (stationName == "松島海岸") ? 141.05885 :
                     (stationName == "穴水") ? 136.90459 :
                     (stationName == "石巻"    ) ? 141.30350 : this.x,

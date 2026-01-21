@@ -42,7 +42,7 @@ class App {
 
     if (revision.railroad < REV_RAILROAD || !cachedRailroad) {
       log('railroad cache is outdated, downloading');
-      const res = await fetch('data/railroad.json?r=' + REV_RAILROAD);
+      const res = await fetch('dist/data/railroad.json?r=' + REV_RAILROAD);
       const data = await res.text();
       topoRailroad = JSON.parse(data);
   
@@ -58,7 +58,7 @@ class App {
   
     if (revision.station < REV_STATION || !cachedStation) {
       log('station cache is outdated, downloading');
-      const res = await fetch('data/station.json?r=' + REV_STATION);
+      const res = await fetch('dist/data/station.json?r=' + REV_STATION);
       const data = await res.text();
       topoStation = JSON.parse(data);
   
