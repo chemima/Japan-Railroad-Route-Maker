@@ -1,8 +1,8 @@
 {
-  "name": "japan-railroad-plotter",
-  "version": "2.0.5",
-  "description": "Japan Railroad Plotter",
-  "author": "Snack <korsnack@korsnack.kr>",
+  "name": "japan-railroad-route-maker",
+  "version": "1.0.2",
+  "description": "Japan Railroad Route Maker",
+  "author": "chemima <kcw1537@postech.ac.kr>",
   "license": "MIT",
   "scripts": {
     "start": "set NODE_OPTIONS=--openssl-legacy-provider && set NODE_ENV=development && webpack-dev-server --mode development",
