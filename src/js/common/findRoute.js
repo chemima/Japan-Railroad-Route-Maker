@@ -108,8 +108,15 @@ module.exports = function (lineStrings, startCoord, endCoord) {
             (lidx1 !== lidx2 || cidx1 !== cidx2) &&
             utils.geo.compare(...lines[lidx1][cidx1], ...lines[lidx2][cidx2])
           ) {
-            intersections[lidx1][cidx1] = [ lidx2, cidx2 ];
-            intersections[lidx2][cidx2] = [ lidx1, cidx1 ];
+            // intersections[lidx1][cidx1] = [ lidx2, cidx2 ];  -- 옛날 코드
+            // intersections[lidx2][cidx2] = [ lidx1, cidx1 ];  -- 옛날 코드
+
+            // intersection을 [[lidx, cidx], [lidx, cidx]...] 형태의 배열로 저장
+            if (!intersections[lidx1][cidx1]) intersections[lidx1][cidx1] = [];
+            intersections[lidx1][cidx1].push([ lidx2, cidx2 ]);
+
+            if (!intersections[lidx2][cidx2]) intersections[lidx2][cidx2] = [];
+            intersections[lidx2][cidx2].push([ lidx1, cidx1 ]);
           }
         }
       }
@@ -204,9 +211,19 @@ function findRecursive(lines, intersections, start, end, prevDirection = DIR_STA
   }
   
   // 현재 위치에서 다른 선으로 이동할 수 있을 경우
-  if (intersection !== false && !isVisited(intersection)) {
-    const newRoutes = _recurse(intersection, end, DIR_INTERSECTION, visited);
-    routes.push(...newRoutes);
+  // if (intersection !== false && !isVisited(intersection)) {  -- 옛날 코드
+  //    const newRoutes = _recurse(intersection, end, DIR_INTERSECTION, visited);  -- 옛날 코드
+  //    routes.push(...newRoutes);  -- 옛날 코드
+  //  }  -- 옛날 코드
+
+ if (intersection !== false) {
+    // intersection을 [[lidx, cidx], [lidx, cidx]...] 형태의 배열로 저장
+    for (const nextHop of intersection) {
+      if (!isVisited(nextHop)) {
+        const newRoutes = _recurse(nextHop, end, DIR_INTERSECTION, visited);
+        routes.push(...newRoutes);
+      }
+    }
   }
   
   // 현재 위치보다 오른쪽에 연결점이 있을 경우
