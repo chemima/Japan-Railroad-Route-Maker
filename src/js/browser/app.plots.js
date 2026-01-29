@@ -12,13 +12,43 @@ module.exports = function (App) {
     const $target = $(e.target).closest('.plot-item');
     const index = parseInt($target.attr('data-index'), 10);
 
-    const newColor = prompt('새로운 색상 (#rrggbb 형태)').trim();
-    if (!newColor) return;
+    const $existingPalette = $target.find('.mini-palette');
+    if ($existingPalette.length > 0) {
+      $existingPalette.remove();
+      return;
+    }
 
-    if (/^#[0-9a-f]{6}$/i.test(newColor))
-      this.changePlotColor(index, newColor);
-    else if (/^[0-9a-f]{6}$/i.test(newColor))
-      this.changePlotColor(index, '#' + newColor);
+    const $palette = $('<div class="mini-palette">');
+
+    const $input = $('<input type="text" class="mini-input" placeholder="#HEX">');
+    $input.on('input', (evt) => {
+      const val = evt.target.value;
+      if (/^#?[0-9a-f]{6}$/i.test(val)) {
+        const color = val.startsWith('#') ? val : '#' + val;
+        this.changePlotColor(index, color);
+      }
+    });
+    $palette.append($input);
+
+    const colors = [
+      '#ff0000', '#ef5350', '#ab47bc', '#303f9f', '#0000ff',
+      '#1976d2', '#00ffff', '#00796b', '#388e3c', '#66bb6a',
+      '#ffee58', '#f57c00', '#ffa726', '#a0a0a0', '#000000'
+    ];
+
+    colors.forEach(color => {
+      const $swatch = $('<div class="mini-swatch">');
+      $swatch.attr('style', 'background-color: ' + color);
+
+      $swatch.on('click', () => {
+        this.changePlotColor(index, color);
+        // $palette.remove();
+      });
+
+      $palette.append($swatch);
+    });
+
+    $target.append($palette);
   };
 
   App.prototype.eventPlotChangeWidth = function (e) {
@@ -57,7 +87,7 @@ module.exports = function (App) {
       const series = this.JRP.seriesHashes.get(railroadHash);
       lineName = series.name;
     }
-    
+
     const startName = this.JRP.getStationFeature(startHash).properties.stationName;
     const endName = this.JRP.getStationFeature(endHash).properties.stationName;
 
