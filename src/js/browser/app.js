@@ -38,14 +38,17 @@ class App {
     const cachedRailroad = localStorage.getItem('railroad');
     const cachedStation = localStorage.getItem('station');
 
+    const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    const dataPath = isLocal ? 'dist/data/' : 'data/';
+
     let topoRailroad, topoStation;
 
     if (revision.railroad < REV_RAILROAD || !cachedRailroad) {
       log('railroad cache is outdated, downloading');
-      const res = await fetch('dist/data/railroad.json?r=' + REV_RAILROAD);
+      const res = await fetch(dataPath + 'railroad.json?r=' + REV_RAILROAD);
       const data = await res.text();
       topoRailroad = JSON.parse(data);
-  
+
       log('compressing and saving railroad cache');
       const compressed = LZString.compressToUTF16(data);
       localStorage.setItem('railroad', compressed);
@@ -55,13 +58,13 @@ class App {
       const decompressed = LZString.decompressFromUTF16(cachedRailroad);
       topoRailroad = JSON.parse(decompressed);
     }
-  
+
     if (revision.station < REV_STATION || !cachedStation) {
       log('station cache is outdated, downloading');
-      const res = await fetch('dist/data/station.json?r=' + REV_STATION);
+      const res = await fetch(dataPath + 'station.json?r=' + REV_STATION);
       const data = await res.text();
       topoStation = JSON.parse(data);
-  
+
       log('compressing and saving station cache, compressing');
       const compressed = LZString.compressToUTF16(data);
       localStorage.setItem('station', compressed);
@@ -75,10 +78,10 @@ class App {
     log('JRP data loaded');
     const revisionToSave = { railroad: REV_RAILROAD, station: REV_STATION };
     localStorage.setItem('revision', JSON.stringify(revisionToSave));
-  
+
     log('Initializing JRPlotter');
     this.JRP = new JRPlotter(topoRailroad, topoStation);
-  
+
     log('everything has loaded, ready to go!');
   }
 
@@ -131,7 +134,7 @@ class App {
   }
 
   newGoogleMarker(point, text) {
-    const [ lng, lat ] = point;  
+    const [ lng, lat ] = point;
     return new google.maps.Marker({
       position: { lat, lng },
       label: text,
